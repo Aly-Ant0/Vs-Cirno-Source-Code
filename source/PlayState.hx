@@ -732,7 +732,7 @@ class PlayState extends MusicBeatState
 		var lowercaseSong:String = SONG.song.toLowerCase();
 		var file:String = Paths.txt(lowercaseSong + '/' + lowercaseSong + 'Dialogue');
 		if (OpenFlAssets.exists(file)) {
-			dialogue = CoolUtil.coolTextFile(file);
+			dialogue = CoolUtil.coolTextFile(SUtil.getPath() + file);
 		}
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		// doof.x += 70;
@@ -901,7 +901,7 @@ class PlayState extends MusicBeatState
 			luaFile = Paths.mods(luaFile);
 			doPush = true;
 		} else {
-			luaFile = Paths.getPreloadPath(luaFile);
+			luaFile = SUtil.getPath() + Paths.getPreloadPath(luaFile);
 			if(sys.FileSystem.exists(luaFile)) {
 				doPush = true;
 			}
@@ -1377,7 +1377,7 @@ class PlayState extends MusicBeatState
 		var songName:String = SONG.song.toLowerCase();
 		var file:String = Paths.json(songName + '/events');
 		#if sys
-		if (sys.FileSystem.exists(file)) {
+		if (sys.FileSystem.exists(SUtil.getPath() + file)) {
 		#else
 		if (OpenFlAssets.exists(file)) {
 		#end
