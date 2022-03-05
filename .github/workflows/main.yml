@@ -172,14 +172,14 @@ jobs:
           ndk-version: r15c
 
       # Runs a set of commands using the runners shell
-      - name: Installing Packages
+      - name: Install Haxelib
         run: |
-          mkdir -p "%HAXELIB_ROOT%"
-          haxelib setup "%HAXELIB_ROOT%"
-          haxelib install lime --quiet
-          haxelib install openfl --quiet
-          haxelib install flixel --quiet
-          haxelib install hxcpp --quiet
+          haxelib setup ~/haxelib
+          haxelib install lime
+          haxelib install openfl
+          haxelib install hxcpp > /dev/null
+          haxelib --never install flixel
+          haxelib run lime setup flixel
           haxelib run lime setup
           haxelib run lime config ANDROID_SDK $ANDROID_SDK_ROOT
           haxelib run lime config ANDROID_NDK_ROOT $ANDROID_NDK_ROOT
