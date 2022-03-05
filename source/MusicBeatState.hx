@@ -50,8 +50,8 @@ class MusicBeatState extends FlxUIState
 	public function addVirtualPad(?DPad, ?Action)
 	#end
 
+	#if android
 	public function addAndroidControls() {
-		#if android
                 androidc = new AndroidControls();
 
 		switch (androidc.mode)
@@ -76,17 +76,21 @@ class MusicBeatState extends FlxUIState
 		androidc.visible = false;
 
 		add(androidc);
-		#end
 	}
+        #else
+	public function addVirtualPad()
+	#end
 
+	#if android
         public function addPadCamera() {
-		#if android
 		var camcontrol = new flixel.FlxCamera();
 		FlxG.cameras.add(camcontrol);
 		camcontrol.bgColor.alpha = 0;
 		_virtualpad.cameras = [camcontrol];
-		#end
 	}
+        #else
+        public function addPadCamera()
+        #end
 	
 	override function destroy() {
 		#if android
