@@ -78,7 +78,7 @@ class MusicBeatState extends FlxUIState
 		add(androidc);
 	}
         #else
-	public function addVirtualPad()
+	public function addAndroidControls()
 	#end
 
 	#if android
